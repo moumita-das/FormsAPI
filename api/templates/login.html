@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% bootstrap_messages %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+        <h2>Login</h2>
+
+            {% if messages %}
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+              <form method="post" action="\login" novalidate><input type='hidden'/>
+                  {% csrf_token %}
+                  {% bootstrap_form auth_form %}
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-default ">Login</button>
+                  </div>
+              </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
